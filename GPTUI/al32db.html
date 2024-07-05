@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AL32DB | Chatbot</title>
+    <link rel="icon" type="image/x-icon" href="static/images/newlogo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/al32db.css') }}" />
+    <style>
+        
+
+    </style>
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row">
+        <div class="col-auto sidebar">
+            <div class="sidebar-header">
+                <button class="btn btn-link collapse-button" onclick="toggleSidebar()"><i class="fas fa-chevron-left collapse-icon"></i></button>
+                <button id="newchat" class="new-conversation-button mb-2" onclick="addNewConversation()"><i class="far fa-edit"></i></button>
+            </div>
+            <div href="#" id="botbot" class="h5 botbot font-weight-bold text-center mt-4 mb-3 new-conversation-button">winsuretchAI <i class="fa-solid fa-microchip"></i></div>
+            <ul class="previous-conversations" id="previousConversations">
+              <!-- Previous conversations will be dynamically added here -->
+          </ul>
+        </div>
+        <div class="col chat-area">
+            <nav class="navbar navbar-expand-lg navbar-light navbar-custom">
+                <a class="navbar-brand" href="#">
+                    <img src="/static/images/logo.png" alt="Bot Logo">
+                </a>
+                <div class="ml-auto">
+                    <button class="btn btn-link theme-button" onclick="toggleTheme()"><i class="fa-solid fa-moon"></i></button>
+                    <button class="btn btn-link menu-button"><i class="fas fa-bars"></i></button>
+                </div>
+            </nav>
+            <div class="messages" id="messages"></div>
+            <div class="input-area">
+                <input type="text" class="form-control" id="messageInput" placeholder="Type a message..." oninput="checkInput()">
+                <button class="btn btn-primary" id="sendButton" onclick="sendMessage()" disabled><i class="fa-regular fa-paper-plane"></i></button>
+                <button class="btn btn-danger" id="deleteButton" onclick="clearChat()" disabled><i class="fas fa-trash-alt"></i></button>
+            </div>
+
+            <span class="info">winsuretchAI can make mistakes. please use accordingly.</span>
+        </div>
+    </div>
+</div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="{{ url_for('static', path='/js/al32db.js') }}"></script>
+    <script>
+       
+    </script>
+</body>
+</html>

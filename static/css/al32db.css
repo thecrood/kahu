@@ -1,0 +1,436 @@
+body, html {
+  height: 100%;
+  margin: 0;
+  font-size: 15px;
+}
+
+.navbar-custom {
+  background-color: white;
+  color: #333;
+}
+
+.navbar-custom .navbar-brand img {
+  height: 35px;
+}
+
+.container-fluid {
+  height: 100%;
+}
+
+.row {
+  height: 100%;
+}
+
+.sidebar {
+  height: 100%;
+  background-color: #f4f4f4;
+  overflow-y: auto;
+  transition: width 0.3s ease;
+  padding-left: 0px;
+  min-width: 225px;
+  max-width: 225px;
+}
+
+.btn-danger {
+	color: #fff;
+	background-color: #6e6e6e !important;
+}
+.btn-danger:hover {
+	color: #fff;
+	background-color: #000 !important;
+}
+
+.sidebar.collapsed {
+  width: 50px;
+}
+
+.sidebar.collapsed .previous-conversations li,
+.sidebar.collapsed .new-conversation-button {
+  display: none;
+}
+
+.sidebar.collapsed .collapse-icon {
+  transform: rotate(180deg);
+}
+
+
+/* list groun item face from border settings */
+.list-group-item {
+  border: none;
+  border-radius: 15px;
+  background-color: unset;
+  white-space: nowrap; /* Ensure text doesn't wrap */
+  overflow: hidden; /* Hide overflow text */
+  text-overflow: ellipsis; /* Add ellipsis for overflowing text */
+  position: relative; /* Required for pseudo-element positioning */
+}
+
+.list-group-item::before,
+.list-group-item::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 20px; /* Adjust the width of the fade effect */
+  pointer-events: none;
+}
+
+.list-group-item::before {
+  left: 0;
+  /* background: linear-gradient(to right, #fff, rgba(255, 255, 255, 0)); */
+}
+
+.list-group-item::after {
+  right: 0;
+  background: linear-gradient(to left, #f4f4f4, rgba(255, 255, 255, 0));
+}
+
+.dark-theme .list-group-item::after {
+  right: 0;
+  background: linear-gradient(to left, #818080, rgba(255, 255, 255, 0));
+}
+
+.list-group-item:first-child {
+	border-top-left-radius: 15px;
+	border-top-right-radius: 15px;
+	/* border-bottom-left-radius: 15px; */
+	/* border-bottom-right-radius: 15px; */
+}
+
+.list-group-item:last-child {
+	border-bottom-left-radius: 15px;
+	border-bottom-right-radius: 15px;
+}
+
+.list-group-item:hover {
+	border: none;
+  background-color: unset !important;
+  border-radius: 15px;
+  flex-grow: 1;
+}
+
+
+.chat-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  padding-top: 0px;
+}
+
+.previous-conversations {
+  list-style: none;
+  padding: 10px 10px 10px;
+  margin: 0;
+}
+
+.previous-conversations li {
+  padding: 8px 10px;
+  cursor: pointer;
+  margin-bottom: 6px;
+}
+
+.dark-theme .previous-conversations li {
+  background-color: #000;
+}
+
+.previous-conversations li:hover {
+  background-color: #e0e0e0;
+}
+
+.messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px;
+}
+
+.message {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.message.bot .icon, .message.human .icon {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+.message.bot .icon img, .message.human .icon img {
+  width: 100%;
+  height: 100%;
+}
+
+.message-content {
+  max-width: 70%;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+
+.message.human .message-content {
+  background-color: #dcf8c6;
+}
+
+.input-area {
+  display: flex;
+  padding: 10px 100px;
+}
+
+.input-area input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.input-area button {
+  margin-left: 10px;
+  padding: 10px;
+  background-color: #222;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 0.1rem 1rem;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+.dark-theme {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+.dark-theme .navbar, .dark-theme .new-conversation-button {
+  background-color: #333;
+  color: #ffff;
+}
+
+.dark-theme .collapse-button {
+	color: #ffff;
+}
+.dark-theme .messages, .dark-theme .message-content {
+  background-color: #333 !important;
+  color: #e0e0e0;
+}
+
+.dark-theme .message.human .message-content {
+  background-color: #444;
+}
+
+.dark-theme .sidebar {
+  background-color: #222;
+}
+
+.dark-theme .input-area {
+  background-color: #222;
+}
+
+.dark-theme .input-area input, .dark-theme .input-area button {
+  background-color: #333;
+  color: #e0e0e0;
+}
+
+.dark-theme .navbar .menu-button, 
+.dark-theme .navbar .theme-button, 
+.dark-theme .navbar .collapse-button, 
+.dark-theme .input-area button {
+  color: white;
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: self-end;
+  padding: 6px;
+  margin-top: 6px;
+}
+
+
+
+
+
+/* Styles for the chat messages */
+#messages {
+  overflow-y: auto;
+  max-height: calc(100vh - 60px - 84px);
+}
+
+.message {
+  display: flex;
+  margin-bottom: 10px;
+  padding: 20px 101px 0px;
+}
+
+.message.bot {
+  display: flex;
+  flex-direction: row-reverse;
+  padding: 20px 101px 0px;
+}
+
+.message .icon {
+  margin-right: 10px;
+}
+
+.message .icon img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.message .message-content {
+  padding: 10px;
+  background-color: #f0f0f0;
+  border-radius: 10px;
+}
+
+.message.human .message-content {
+  background-color: #d3f8e2;
+}
+
+.message.bot.typing-indicator .message-content {
+  display: flex;
+  align-items: center;
+}
+
+.message.bot.typing-indicator .message-content span {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background-color: #aaa;
+  border-radius: 50%;
+  margin-right: 5px;
+  animation: typing-animation 1s infinite ease-in-out;
+}
+
+@keyframes typing-animation {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(0.8);
+  }
+}
+
+.info {
+  text-align: center;
+  color: cadetblue;
+  font-size: smaller;
+}
+
+.cpy {
+display: flex;
+flex-direction: row-reverse;
+}
+
+#sendButton {
+  background-color: #222;
+  color: #ffff;
+}
+
+.cpy  {
+  cursor: pointer;
+}
+
+.fa-solid.fa-moon {
+color: #000;
+}
+
+dark-theme .fa-solid.fa-sun {
+	color: #ffff;
+}
+
+.fa-solid.fa-moon:hover {
+	color: greenyellow;
+}
+
+.fa-solid.fa-sun:hover {
+  color: orangered !important;
+}
+
+.btn.btn-link.menu-button {
+  color: #000;
+}
+
+.dark-theme .btn.btn-link.menu-button {
+  color: #ffff;
+}
+
+.far.fa-edit {
+  color: #000;
+}
+
+.dark-theme .far.fa-edit {
+  color: #ffff;
+}
+
+.btn.btn-link.collapse-button {
+  color: #000;
+}
+
+.dark-theme .btn.btn-link.collapse-button {
+  color: #ffff;
+}
+
+/* CSS for delete icon */
+.delete-icon {
+  visibility: hidden; /* Initially hide the delete icon */
+}
+
+.list-group-item:hover .delete-icon,
+.list-group-item.active .delete-icon {
+  visibility: visible; /* Show delete icon on hover and for active item */
+}
+
+/* CSS for selected chat item */
+.list-group-item.active {
+  background-color: #6e6e6e1f !important;
+  color: black; /* Example text color */
+  border-radius: 15px;
+  flex-grow: 1;
+}
+
+.dark-theme .list-group-item.active {
+  background-color: #6e6e6e1f !important;
+  color: white; /* Example text color */
+
+}
+
+#botbot {
+  cursor: pointer;
+  margin-left: 12px;
+}
+
+#botbot:hover {
+  cursor: pointer;
+  color: cadetblue;
+}
+
+.fas.fa-trash-alt.delete-icon {
+	visibility: hidden;
+	position: absolute;
+	padding: 4px 0px;
+  color: black;
+}
+
+.list-group-item .blurred-text {
+  filter: blur(0);
+  transition: filter 0.3s ease;
+}
+
+.list-group-item:hover .blurred-text {
+  filter: blur(3px); /* Adjust the blur amount as needed */
+}
+
+
+.dark-theme #botbot {
+  background-color:#6e6e6e1f;
+}
+
+.dark-theme .fas.fa-trash-alt.delete-icon{
+  color: White;
+}
